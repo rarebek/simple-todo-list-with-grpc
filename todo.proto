@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+option go_package = ".";
+
+service ToDoService {
+  rpc AddTask(AddTaskRequest) returns (AddTaskResponse);
+  rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
+  rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse);
+  rpc GetOneTask(GetOneTaskRequest) returns (GetOneTaskResponse);
+  rpc GetAllTasks(GetAllTasksRequest) returns (GetAllTasksResponse);
+}
+
+message Task{
+  int32 id = 1;
+  string title = 2;
+  string description = 3;
+}
+
+message AddTaskRequest {
+  string title = 1;
+  string description = 2;
+}
+
+message AddTaskResponse {
+  bool succes = 1;
+  string text = 2;
+}
+
+message UpdateTaskRequest {
+  int32 task_id = 1;
+  string title = 2;
+  string description = 3;
+}
+
+message UpdateTaskResponse {
+  bool succes = 1;
+  string text = 2;
+}
+
+message DeleteTaskRequest {
+  int32 task_id = 1;
+}
+
+message DeleteTaskResponse {
+  bool succes = 1;
+  string text = 2;
+}
+
+message GetOneTaskRequest {
+  int32 task_id = 1;
+}
+
+message GetOneTaskResponse {
+  Task task = 1;
+}
+
+message GetAllTasksRequest {
+}
+message GetAllTasksResponse {
+  repeated Task tasks = 1;
+}
+
+message Empty {}
